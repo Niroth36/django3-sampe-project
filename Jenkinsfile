@@ -26,9 +26,14 @@ pipeline {
 
         stage ('Deploy') {
             steps {
+                sshagent (credentials: ['ssh-deployment-1']) {
+
+             
                 sh '''
-                    echo "Test Deploy"
+                    pwd
+                    ansible-playbook playbooks/control.yml
                     '''
+            }
             }
         }
     }
