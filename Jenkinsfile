@@ -31,7 +31,7 @@ pipeline {
              
                 sh '''
                     pwd
-                    ansible-playbook ~/workspace/ansible-project/./playbooks/control.yml
+                    ansible-playbook -i ~/workspace/ansible-project/hosts.yml -l deploymentservers ~/workspace/ansible-project/playbooks/control.yml
                     '''
             }
             }
