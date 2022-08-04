@@ -28,12 +28,18 @@ pipeline {
             steps {
                 sshagent (credentials: ['ssh-deployment-1']) {
 
-             
                 sh '''
                     pwd
                     ansible-playbook -i ~/workspace/ansible-project/hosts.yml -l deploymentservers ~/workspace/ansible-project/playbooks/control.yml
                     '''
             }
+            }
+        }
+        stage ('Deploy to k8s') {
+            steps {
+                sh '''
+                kubectl get pods
+                '''
             }
         }
     }
